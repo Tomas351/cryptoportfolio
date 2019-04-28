@@ -1,36 +1,37 @@
-# WEB system
-- [ ] Replace "WEB system" with your system name
+# Crypto Portfolio
 
 ## Description
-- [ ] Provide WEB system description in few sentences - its purpose, users, etc.
+
+This web system will allow to add and update your crypto currency portfolio. Also, it will visualize it and provide other intresting information about it.
 
 ## Entity definition
-- [ ] Define the entity ("object" that will be manipulated) of WEB system
-- [ ] Entity should have a name
-- [ ] Entity should have 3 mandatory attributes:
-    - [ ] ID - depending on specific service this could be a number or string
-    - [ ] Creation date - (if applicable for specific service) ISO 8601 format date string
-    - [ ] Modification date - (if applicable for specific service) ISO 8601 format date string
-- [ ] Entity should have at least 5 custom attributes
-    - [ ] Each attribute should have a type defined: number, string, ISO 8601 date string, boolean, object, array or other
-    - [ ] Each attribute should have restrictions defined: list of constants, or number range, or string length, or string format, or object schema, or array schema or other. For example, you can use `joi` language to define restrictions: https://github.com/hapijs/joi/blob/v13.1.2/API.md
+
+Crypto Currency Portfolio
+
+name (string, lenght < 30) 
+descriptiom (string, lenght < 300)
+creation date (date type)
+modification date (date type)
+bitcoin amount (number, >0)
+ethereum amount (number, >0)
+xrp amount (number, >0)
+ltc amount (number, >0)
 
 ## API definition
-- [ ] Define specific service (konkrečios paslaugos) API methods that WEB system is going to use
-- [ ] Optionally define additional API methods that WEB system is going to expose
-- [ ] API should have at least 4 methods
-    - [ ] A method to return entity by ID. Should not have request body
-    - [ ] A method to return multiple entities (Array) by ID. This method should support at least one header value to:
-        - [ ] Return only entities that match pattern in one of its attributes
-        - [ ] Return 10 entities starting provided index
-        - [ ] Return sorted entities by one of its attributes (both ascending and descending)
-        - [ ] Other (should be approved by Product Owner (PO))
-    - [ ] A method to remove entity by ID. Returns removed entity. Should not have request body
-    - [ ] A method to update entity by ID. Accepts entity to update and returns updated entity
-- [ ] Each method should have HTTP method defined
-- [ ] Each method should have URI defined (use {id} as entity ID placeholder)
-- [ ] Should return all 4xx errors in unified format. Define format using `joi` language
-- [ ] Should return all 5xx errors in unified format. Define format using `joi` language
+
+App will use coinranking api: https://docs.coinranking.com/
+
+- GET https://api.coinranking.com/v1/public/coin/:coin_id - receive information about specific coin
+
+- GET /portfolio/{id} get portfolio by id
+
+- GET /portfolio/ascending  get array of portfolios sorted by creation date in ascending order
+
+- GET /portfolio/descending  get array of portfolios sorted by creation date in descending order
+
+- POST /portfolio/update/{id} updates existing portfolio by id
+
+- DELETE /portfolio/{id} delete portfolio by id
 
 ## UI definition
 - [ ] Define the structure of how visually the WEB system is going to look like
