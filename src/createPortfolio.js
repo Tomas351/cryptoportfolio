@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 export default class Create extends Component {
     constructor(props)
@@ -8,6 +9,7 @@ export default class Create extends Component {
         this.handleSubmit = this.handleSubmit.bind(this)
         this.state = {
             portfolio_name: "",
+            description: "",
             btc: "",
             eth: "",
             ltc: ""
@@ -22,9 +24,18 @@ export default class Create extends Component {
     }
     handleSubmit(event){
         event.preventDefault()
-        console.log(`The values are ${this.state.portfolio_name}, ${this.state.btc}, and ${this.state.eth}, and ${this.state.xrp}`)
+        const obj = {
+            portfolio_name: this.state.portfolio_name,
+            description: this.state.description,
+            btc: this.state.btc,
+            eth: this.state.eth,
+            ltc: this.state.ltc
+        }
+        axios.post('http://localhost:4000/portfolio/add', obj)
+        .then(res => console.log(res.data));
         this.setState({
             portfolio_name: "",
+            description: "",
             btc: "",
             eth: "",
             ltc: ""
@@ -44,6 +55,14 @@ export default class Create extends Component {
                         onChange={this.onChange}/>
                     </div>
                     <div className="form-group">
+                        <label>Description:  </label>
+                        <input type="textarea" 
+                        className="form-control"
+                        name="description"
+                        value={this.state.description}
+                        onChange={this.onChange}/>
+                    </div>
+                    <div className="form-group">
                         <label>Amount of BTC: </label>
                         <input type="text"
                         className="form-control"
@@ -60,11 +79,11 @@ export default class Create extends Component {
                         onChange={this.onChange}/>
                     </div>
                     <div className="form-group">
-                        <label>Amount of XRP: </label>
+                        <label>Amount of LTC: </label>
                         <input type="text" 
                         className="form-control"
-                        name="xrp"
-                        value={this.state.xrp}
+                        name="ltc"
+                        value={this.state.ltc}
                         onChange={this.onChange}/>
                     </div>
                     <div className="form-group">

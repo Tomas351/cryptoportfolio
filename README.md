@@ -6,16 +6,15 @@ This web system will allow to add and update your crypto currency portfolio. Als
 
 ## Entity definition
 
-Crypto Currency Portfolio
+Crypto Currency Portfolio  
 
-name (string, lenght < 30) 
-descriptiom (string, lenght < 300)
-creation date (date type)
-modification date (date type)
-bitcoin amount (number, >0)
-ethereum amount (number, >0)
-xrp amount (number, >0)
-ltc amount (number, >0)
+name (string, lenght < 30)  
+descriptiom (string, lenght < 300)  
+creation date (date type)  
+modification date (date type)  
+bitcoin amount (number, >0)  
+ethereum amount (number, >0)  
+ltc amount (number, >0)  
 
 ## API definition
 
@@ -30,6 +29,8 @@ App will use coinranking api: https://docs.coinranking.com/
 - GET /portfolio/descending  get array of portfolios sorted by creation date in descending order
 
 - POST /portfolio/update/{id} updates existing portfolio by id
+
+- POST /portfolio/add/ adds a portfolio
 
 - DELETE /portfolio/{id} delete portfolio by id
 
