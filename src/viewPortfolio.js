@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import PieChart from './pieChart';
 
 export default class List extends Component {
     constructor(){
@@ -70,7 +71,7 @@ componentDidMount(){
               </tbody>
             </table>
 
-            
+<PieChart btc= {this.state.btc} eth= {this.state.eth} ltc= {this.state.ltc} btcprice={this.state.btcprice} ethprice={this.state.ethprice} ltcprice={this.state.ltcprice} />
            </div>
         )
     }
