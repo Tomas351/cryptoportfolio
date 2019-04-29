@@ -16,6 +16,15 @@ export default class List extends Component {
           console.log(error);
         })
     }
+    componentDidUpdate(){
+      axios.get('http://localhost:4000/portfolio')
+      .then(response => {
+        this.setState({portfolios: response.data})
+      })
+        .catch(function (error) {
+          console.log(error);
+          })
+      }
     tabRow(){
         return this.state.portfolios.map(function(object, i){
             return <TableRow obj={object} key={i} />

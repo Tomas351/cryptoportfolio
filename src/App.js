@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Edit from './editPortofolio';
 import Create from './createPortfolio';
 import List from './listPortfolio';
+import View from './viewPortfolio';
+
 class App extends React.Component {
   render() {
     return (
@@ -25,6 +27,7 @@ class App extends React.Component {
           </nav> <br/>
           <Switch>
               <Route path='/edit/:id' component={ Edit } />
+              <Route path='/view/:id' component={ View } />
               <Route exact path='/create' component={ Create } />
               <Route path='/list' component={ List } />
           </Switch>

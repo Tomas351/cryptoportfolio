@@ -15,7 +15,7 @@ portfolioRoutes.route('/add').post(function (req, res) {
     });
 });
 
-// Defined get data(index or listing) route
+// get list of all portfolios
 portfolioRoutes.route('/').get(function (req, res) {
     Portfolio.find(function(err, portfolios){
     if(err){
@@ -27,7 +27,7 @@ portfolioRoutes.route('/').get(function (req, res) {
   });
 });
 
-// Defined edit route
+// get portfolio by id
 portfolioRoutes.route('/edit/:id').get(function (req, res) {
   let id = req.params.id;
   Portfolio.findById(id, function (err, portfolio){
@@ -35,7 +35,7 @@ portfolioRoutes.route('/edit/:id').get(function (req, res) {
   });
 });
 
-//  Defined update route
+//  update portfolio
 portfolioRoutes.route('/update/:id').post(function (req, res) {
     Portfolio.findById(req.params.id, function(err, portfolio) {
     if (!portfolio)
@@ -43,8 +43,6 @@ portfolioRoutes.route('/update/:id').post(function (req, res) {
     else {
         portfolio.portfolio_name = req.body.portfolio_name;
         portfolio.description = req.body.description;
-        portfolio.created = portfolio.created;
-        portfolio.updated = Date.now;
         portfolio.btc = req.body.btc;
         portfolio.eth = req.body.eth;
         portfolio.ltc = req.body.ltc;
@@ -58,7 +56,7 @@ portfolioRoutes.route('/update/:id').post(function (req, res) {
   });
 });
 
-// Defined delete | remove | destroy route
+// delete portfolio with id
 portfolioRoutes.route('/delete/:id').get(function (req, res) {
     Portfolio.findByIdAndRemove({_id: req.params.id}, function(err, portfolio){
         if(err) res.json(err);

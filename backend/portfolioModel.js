@@ -17,14 +17,6 @@ let Portfolio = new Schema({
   ltc: {
     type: Number
   },
-  created: {
-    type: Date,
-    default: Date.now
-  },
-  updated: {
-    type: Date,
-    default: null
-  }
 },{
     collection: 'Portfolio'
 });

@@ -22,7 +22,9 @@ App will use coinranking api: https://docs.coinranking.com/
 
 - GET https://api.coinranking.com/v1/public/coin/:coin_id - receive information about specific coin
 
-- GET /portfolio/{id} get portfolio by id
+- GET /portfolio/edit/{id} get portfolio by id
+
+- GET /portfolio/ get all portfolios
 
 - GET /portfolio/ascending  get array of portfolios sorted by creation date in ascending order
 

@@ -1,10 +1,105 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 export default class Edit extends Component {
+    constructor(props)
+    {
+        super(props)
+        this.onChange = this.onChange.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
+        this.state = {
+            portfolio_name: "",
+            description: "",
+            btc: "",
+            eth: "",
+            ltc: ""
+        }
+    }
+
+    componentDidMount() {
+        axios.get('http://localhost:4000/portfolio/edit/'+this.props.match.params.id)
+            .then(response => {
+                this.setState({ 
+                    portfolio_name: response.data.portfolio_name, 
+                    description: response.data.description,
+                    btc: response.data.btc,
+                    eth: response.data.eth,
+                    ltc: response.data.ltc
+                })
+            })
+            .catch(function (error) {
+                console.log(error)
+            })
+      }
+
+    onChange(event){
+        const{name, value} = event.target
+        this.setState({
+            [name]: value
+        })
+    }
+    handleSubmit(event){
+        event.preventDefault()
+        const obj = {
+            portfolio_name: this.state.portfolio_name,
+            description: this.state.description,
+            btc: this.state.btc,
+            eth: this.state.eth,
+            ltc: this.state.ltc
+        }
+        axios.post('http://localhost:4000/portfolio/update/'+this.props.match.params.id, obj)
+        .then(res => console.log(res.data))
+        this.props.history.push('/list')
+    }
     render() {
         return (
-            <div>
-                <p>edit portfolios here</p>
+            <div style={{marginTop: 10}}>
+                <h3>Update Your Portfolio</h3>
+                <form onSubmit={this.handleSubmit}>
+                    <div className="form-group">
+                        <label>Name:  </label>
+                        <input type="text" 
+                        className="form-control"
+                        name="portfolio_name"
+                        value={this.state.portfolio_name}
+                        onChange={this.onChange}/>
+                    </div>
+                    <div className="form-group">
+                        <label>Description:  </label>
+                        <input type="textarea" 
+                        className="form-control"
+                        name="description"
+                        value={this.state.description}
+                        onChange={this.onChange}/>
+                    </div>
+                    <div className="form-group">
+                        <label>Amount of BTC: </label>
+                        <input type="text"
+                        className="form-control"
+                        name="btc"
+                        value={this.state.btc}
+                        onChange={this.onChange}/>
+                    </div>
+                    <div className="form-group">
+                        <label>Amount of ETH: </label>
+                        <input type="text"
+                        className="form-control"
+                        name="eth"
+                        value={this.state.eth}
+                        onChange={this.onChange}/>
+                    </div>
+                    <div className="form-group">
+                        <label>Amount of LTC: </label>
+                        <input type="text" 
+                        className="form-control"
+                        name="ltc"
+                        value={this.state.ltc}
+                        onChange={this.onChange}/>
+                    </div>
+                    <div className="form-group">
+                        <input type="submit" value="Update portfolio" className="btn btn-primary"/>
+                    </div>
+                </form>
             </div>
         )
     }

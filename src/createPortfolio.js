@@ -25,7 +25,7 @@ export default class Create extends Component {
     handleSubmit(event){
         event.preventDefault()
         const obj = {
-            name: this.state.portfolio_name,
+            portfolio_name: this.state.portfolio_name,
             description: this.state.description,
             btc: this.state.btc,
             eth: this.state.eth,
