@@ -41,7 +41,7 @@ portfolioRoutes.route('/update/:id').post(function (req, res) {
     if (!portfolio)
       res.status(404).send("data is not found");
     else {
-        portfolio.name = req.body.name;
+        portfolio.portfolio_name = req.body.portfolio_name;
         portfolio.description = req.body.description;
         portfolio.created = portfolio.created;
         portfolio.updated = Date.now;

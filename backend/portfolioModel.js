@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 let Portfolio = new Schema({
-  name: {
+  portfolio_name: {
     type: String
   },
   description: {
