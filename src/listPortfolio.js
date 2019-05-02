@@ -8,7 +8,7 @@ export default class List extends Component {
         this.state = {portfolios: []}
     }
     componentDidMount(){
-        axios.get('http://localhost:4000/portfolio')
+        axios.get('/portfolio/')
         .then(response => {
           this.setState({ portfolios: response.data });
         })

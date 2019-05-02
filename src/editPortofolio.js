@@ -17,7 +17,7 @@ export default class Edit extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:4000/portfolio/edit/'+this.props.match.params.id)
+        axios.get('/portfolio/edit/'+this.props.match.params.id)
             .then(response => {
                 this.setState({ 
                     portfolio_name: response.data.portfolio_name, 
@@ -47,7 +47,7 @@ export default class Edit extends Component {
             eth: this.state.eth,
             ltc: this.state.ltc
         }
-        axios.post('http://localhost:4000/portfolio/update/'+this.props.match.params.id, obj)
+        axios.post('/portfolio/update/'+this.props.match.params.id, obj)
         .then(res => console.log(res.data))
         this.props.history.push('/list')
     }

@@ -15,8 +15,7 @@ let Portfolio = new Schema({
     type: Number
   },
   created: {
-    type: Date,
-    default: Date.now()
+    type: Date
   },
   ltc: {
     type: Number

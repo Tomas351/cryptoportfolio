@@ -18,7 +18,7 @@ export default class List extends Component {
     }
 
 componentDidMount(){
-    axios.get('http://localhost:4000/portfolio/edit/'+this.props.match.params.id)
+    axios.get('/portfolio/edit/'+this.props.match.params.id)
             .then(response => {
                 this.setState({ 
                     portfolio_name: response.data.portfolio_name, 
