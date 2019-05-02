@@ -8,7 +8,7 @@ class TableRow extends Component {
     this.delete = this.delete.bind(this)
   }
   delete() {
-    axios.get('/portfolio/delete/'+this.props.obj._id)
+    axios.get('/api/delete/'+this.props.obj._id)
         .then(console.log('Deleted'))
         .then(this.props.onDelete)
         .catch(err => console.log(err))

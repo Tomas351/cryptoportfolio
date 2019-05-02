@@ -30,9 +30,8 @@ export default class Create extends Component {
             btc: this.state.btc,
             eth: this.state.eth,
             ltc: this.state.ltc,
-            created: Date.now()
         }
-        axios.post('/portfolio/add', obj)
+        axios.post('/api/add', obj)
         .then(res => console.log(res.data));
         this.setState({
             portfolio_name: "",
