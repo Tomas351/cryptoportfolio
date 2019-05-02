@@ -14,9 +14,13 @@ let Portfolio = new Schema({
   eth: {
     type: Number
   },
+  created: {
+    type: Date,
+    default: Date.now()
+  },
   ltc: {
     type: Number
-  },
+  }
 },{
     collection: 'Portfolio'
 });

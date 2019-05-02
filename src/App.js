@@ -13,7 +13,7 @@ class App extends React.Component {
       <Router>
         <div className="container">
           <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <Link to={'/list'} className="navbar-brand">Crypto Portfolio</Link>
+            <Link to={'/list'} className="navbar-brand"><img alt="" src="https://en.bitcoin.it/w/images/en/2/29/BC_Logo_.png" width="30" height="30"></img>Crypto Portfolio</Link>
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
               <ul className="navbar-nav mr-auto">
               <li className="nav-item">

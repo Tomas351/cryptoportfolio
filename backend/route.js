@@ -31,7 +31,9 @@ portfolioRoutes.route('/').get(function (req, res) {
 portfolioRoutes.route('/edit/:id').get(function (req, res) {
   let id = req.params.id;
   Portfolio.findById(id, function (err, portfolio){
-      res.json(portfolio);
+    if (!portfolio)
+      res.status(404).send("data is not found");
+    else{res.json(portfolio);}  
   });
 });
 
@@ -59,6 +61,8 @@ portfolioRoutes.route('/update/:id').post(function (req, res) {
 // delete portfolio with id
 portfolioRoutes.route('/delete/:id').get(function (req, res) {
     Portfolio.findByIdAndRemove({_id: req.params.id}, function(err, portfolio){
+      if(!portfolio)
+      res.status(404).send("data is not found");
         if(err) res.json(err);
         else res.json('Successfully removed');
     });
