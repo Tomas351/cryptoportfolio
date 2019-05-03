@@ -8,9 +8,8 @@
 
 Crypto Currency Portfolio Entity:
 
-- Name (string, lenght < 30)  
+- Name (string, 5 < lenght < 30, required)  
 - Descriptiom (string, lenght < 300)  
-- Creation date (date type) 
 - Bitcoin amount (number, >0)  
 - Ethereum amount (number, >0)  
 - LTC amount (number, >0)  
@@ -21,16 +20,22 @@ App will use coinranking api: https://docs.coinranking.com/
 
 - GET https://api.coinranking.com/v1/public/coin/:coin_id - receive information about specific coin
 
-- GET /portfolio/edit/{id} get portfolio by id (404: "data is not found")
+- GET /portfolio/edit/{id} get portfolio by id
 
 - GET /portfolio/ get all portfolios 
 
-- POST /portfolio/update/{id} updates existing portfolio by id (400: "unable to update the database", 404: "data is not found")
+- POST /portfolio/update/{id} updates existing portfolio by id 
 
 - POST /portfolio/add/ adds a portfolio
 
-- DELETE /portfolio/{id} delete portfolio by id (404: "data is not found")
+- DELETE /portfolio/{id} delete portfolio by id
 
+Errors:
+
+- 400: "unable to update the database"
+- 400: various input JOI validation errors
+- 404: "data is not found"
+- 500: "internal server error"
 ## UI definition
 
 Wireframe:

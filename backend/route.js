@@ -1,18 +1,30 @@
 const express = require('express');
 const portfolioRoutes = express.Router();
-
+const Joi = require('joi');
 let Portfolio = require('./portfolioModel');
 
 // add portfolio
 portfolioRoutes.route('/add').post(function (req, res) {
   let portfolio = new Portfolio(req.body);
-  portfolio.save()
-    .then(portfolio => {
-      res.status(200).json({'portfolio': 'portfolio in added successfully'});
+  const schema = Joi.object().keys({
+    portfolio_name: Joi.string().trim().min(5).max(30).required(),
+    description: Joi.string().trim().max(300),
+    btc: Joi.number().min(0),
+    eth: Joi.number().min(0),
+    ltc: Joi.number().min(0)
+  })
+  Joi.validate(req.body,schema,(err, result)=> {
+      if(err){
+        return res.status(400).send({status: 'fail', message: err.details[0].message});
+      }
+      portfolio.save()
+      .then(portfolio => {
+        res.status(200).json({'portfolio': 'portfolio in added successfully'});
+      })
+      .catch(err => {
+      res.status(400).send("unable to save to database");
+      });
     })
-    .catch(err => {
-    res.status(400).send("unable to save to database");
-    });
 });
 
 // get list of all portfolios
@@ -39,6 +51,13 @@ portfolioRoutes.route('/edit/:id').get(function (req, res) {
 
 //  update portfolio
 portfolioRoutes.route('/update/:id').post(function (req, res) {
+  const schema = Joi.object().keys({
+    portfolio_name: Joi.string().trim().min(5).max(30).required(),
+    description: Joi.string().trim().max(300),
+    btc: Joi.number().min(0),
+    eth: Joi.number().min(0),
+    ltc: Joi.number().min(0)
+  })
     Portfolio.findById(req.params.id, function(err, portfolio) {
     if (!portfolio)
       res.status(404).send("data is not found");
@@ -48,6 +67,10 @@ portfolioRoutes.route('/update/:id').post(function (req, res) {
         portfolio.btc = req.body.btc;
         portfolio.eth = req.body.eth;
         portfolio.ltc = req.body.ltc;
+        Joi.validate(portfolio,schema,(err, result)=> {
+          if(err){
+            return res.status(400).send({status: 'fail', message: err.details[0].message});
+          }})
         portfolio.save().then(portfolio => {
           res.json('Update complete');
       })
