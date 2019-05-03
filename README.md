@@ -8,6 +8,7 @@
 
 Crypto Currency Portfolio Entity:
 
+- id(mongodb auto generated id)
 - Name (string, 5 < lenght < 30, required)  
 - Descriptiom (string, lenght < 300)  
 - Bitcoin amount (number, >0)  
